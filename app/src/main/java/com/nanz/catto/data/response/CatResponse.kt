@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CatResponse(
-    val breeds: Breeds = Breeds(),
+    val breeds: List<Breeds> = listOf(),
     val id: String = "",
     val url: String = ""
 ): Parcelable

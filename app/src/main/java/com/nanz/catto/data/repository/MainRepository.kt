@@ -1,5 +1,6 @@
 package com.nanz.catto.data.repository
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.aci.viuit.utils.Resource
 import com.nanz.catto.data.extension.isSuccessAndNotNull
@@ -25,6 +26,7 @@ class MainRepository(private val retrofitInstance: RetrofitInstance) {
                     response: Response<List<CatResponse>>
                 ) {
                     if (response.isSuccessAndNotNull()) {
+                        Log.d("TAG", "onResponse: success")
                         response.body()?.let {
                             dataResponse.postValue(
                                 Resource.success(
@@ -35,6 +37,7 @@ class MainRepository(private val retrofitInstance: RetrofitInstance) {
                             )
                         }
                     } else {
+                        Log.d("TAG", "onResponse: fail")
                         dataResponse.postValue(
                             Resource.error(
                                 response.message(),
@@ -47,6 +50,7 @@ class MainRepository(private val retrofitInstance: RetrofitInstance) {
                 }
 
                 override fun onFailure(call: Call<List<CatResponse>>, t: Throwable) {
+                    Log.d("TAG", "onResponse: fail 2 t: $t")
                 }
 
             })
