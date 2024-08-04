@@ -1,10 +1,16 @@
 package com.nanz.catto.data.repository
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.aci.viuit.utils.Resource
 import com.nanz.catto.data.extension.isSuccessAndNotNull
 import com.nanz.catto.data.network.RetrofitInstance
+import com.nanz.catto.data.paging.CatListPagingSource
 import com.nanz.catto.data.response.CatResponse
 import okhttp3.Request
 import retrofit2.Call
@@ -56,6 +62,17 @@ class MainRepository(private val retrofitInstance: RetrofitInstance) {
             })
 
         return dataResponse
+    }
+
+    fun getCatListPaging(): LiveData<PagingData<CatResponse>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5
+            ),
+            pagingSourceFactory = {
+                CatListPagingSource(retrofitInstance.buildRetrofit())
+            }
+        ).liveData
     }
 
 }
