@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.nanz.catto.databinding.FragmentMainBinding
 import com.nanz.catto.ui.adapter.MainAdapter
 import com.nanz.catto.ui.viewmodel.MainViewModel
@@ -31,6 +33,10 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.rvMain.adapter = adapter
+        binding.btnLoadMore.setOnClickListener {
+            val action = MainFragmentDirections.actionMainFragmentToLoadMoreFragment()
+            view.findNavController().navigate(action)
+        }
 
         mainViewModel.getCatList(1, 7).observe(viewLifecycleOwner) { response ->
             activity?.runOnUiThread {

@@ -67,7 +67,7 @@ class MainRepository(private val retrofitInstance: RetrofitInstance) {
     fun getCatListPaging(): LiveData<PagingData<CatResponse>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 5
+                pageSize = 7
             ),
             pagingSourceFactory = {
                 CatListPagingSource(retrofitInstance.buildRetrofit())

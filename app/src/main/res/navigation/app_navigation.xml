@@ -9,6 +9,16 @@
         android:id="@+id/mainFragment"
         android:name="com.nanz.catto.ui.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_loadMoreFragment"
+            app:destination="@id/loadMoreFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loadMoreFragment"
+        android:name="com.nanz.catto.ui.main.LoadMoreFragment"
+        android:label="fragment_load_more"
+        tools:layout="@layout/fragment_load_more" />
 
 </navigation>
