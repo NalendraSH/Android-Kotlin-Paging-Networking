@@ -21,6 +21,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Catto"
+rootProject.name = "Android-Kotlin-Paging-Networking"
 
 include(":app")

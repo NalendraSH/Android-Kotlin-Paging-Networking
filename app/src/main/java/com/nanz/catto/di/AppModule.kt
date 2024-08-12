@@ -8,5 +8,5 @@ import org.koin.dsl.module
 val appModule = module {
     single { ApiInterceptor() }
     single { OkHttpClients(get()) }
-    single { RetrofitInstance(get()) }
+    single { RetrofitInstance(get()).buildRetrofit() }
 }
